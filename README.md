@@ -1,4 +1,4 @@
-# 🔗 Acortador de Enlaces Pro
+# 🔗 Link Shortener Pro
 
 <div align="center">
 
@@ -10,100 +10,100 @@
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Neon-336791?style=flat-square&logo=postgresql)
 ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
-**Transforma URLs largas en enlaces cortos y memorables con analíticas detalladas**
+**Transform long URLs into short, memorable links with detailed analytics**
 
 </div>
 
 ---
 
-## ✨ Características
+## ✨ Features
 
-| Característica | Descripción |
-|----------------|-------------|
-| 🚀 **URLs Cortas** | Genera enlaces cortos usando codificación Base62 |
-| 📊 **Analíticas** | Tracking de clics con geolocalización y dispositivo |
-| ⚡ **Rápido** | Redirección instantánea con preservación SEO |
-| 🔒 **Seguro** | Rate limiting para prevenir abuso |
-| 🎨 **UI Premium** | Interfaz dark theme con glassmorphism |
-| 📱 **Responsive** | Diseño adaptable a cualquier dispositivo |
+| Feature | Description |
+|---------|------------|
+| 🚀 **Short URLs** | Generate short links using Base62 encoding |
+| 📊 **Analytics** | Click tracking with geolocation and device info |
+| ⚡ **Fast** | Instant redirects with SEO preservation |
+| 🔒 **Secure** | Rate limiting to prevent abuse |
+| 🎨 **Premium UI** | Dark theme interface with glassmorphism |
+| 📱 **Responsive** | Adaptive design for any device |
 
 ---
 
-## 🛠️ Stack Tecnológico
+## 🛠️ Tech Stack
 
 <div align="center">
 
-| Tecnología | Propósito |
-|------------|-----------|
-| **Next.js 16** | Framework React con App Router |
-| **React 19** | Librería UI |
-| **TypeScript** | Tipado estático |
-| **Tailwind CSS 4** | Estilos utility-first |
-| **Prisma 7** | ORM para base de datos |
-| **Neon PostgreSQL** | Base de datos serverless |
-| **Lucide React** | Iconos |
+| Technology | Purpose |
+|------------|---------|
+| **Next.js 16** | React framework with App Router |
+| **React 19** | UI library |
+| **TypeScript** | Static typing |
+| **Tailwind CSS 4** | Utility-first styles |
+| **Prisma 7** | Database ORM |
+| **Neon PostgreSQL** | Serverless database |
+| **Lucide React** | Icons |
 
 </div>
 
 ---
 
-## 📦 Instalación
+## 📦 Installation
 
-### Prerrequisitos
+### Prerequisites
 
 - Node.js 18+
-- npm, yarn, pnpm o bun
-- Base de datos PostgreSQL (Neon)
+- npm, yarn, pnpm or bun
+- PostgreSQL database (Neon)
 
-### Pasos
+### Steps
 
 ```bash
-# 1. Clonar el repositorio
+# 1. Clone the repository
 git clone <repository-url>
 cd acortador_link
 
-# 2. Instalar dependencias
+# 2. Install dependencies
 npm install
 
-# 3. Configurar variables de entorno
+# 3. Configure environment variables
 cp .env.example .env
-# Editar .env con tu DATABASE_URL
+# Edit .env with your DATABASE_URL
 
-# 4. Ejecutar migraciones de base de datos
+# 4. Run database migrations
 npx prisma migrate deploy
 
-# 5. Iniciar el servidor de desarrollo
+# 5. Start the development server
 npm run dev
 ```
 
 ---
 
-## ⚙️ Configuración
+## ⚙️ Configuration
 
-### Variables de Entorno
+### Environment Variables
 
-Crea un archivo `.env` en la raíz del proyecto:
+Create a `.env` file in the project root:
 
 ```env
-# Base de datos PostgreSQL (Neon)
-DATABASE_URL="postgresql://usuario:password@host/database?sslmode=require"
+# PostgreSQL database (Neon)
+DATABASE_URL="postgresql://user:password@host/database?sslmode=require"
 
-# Motor de Prisma
+# Prisma Engine
 PRISMA_CLIENT_ENGINE_TYPE="library"
 ```
 
-### Scripts Disponibles
+### Available Scripts
 
-| Comando | Descripción |
+| Command | Description |
 |---------|-------------|
-| `npm run dev` | Iniciar servidor de desarrollo |
-| `npm run build` | Compilar para producción |
-| `npm run start` | Iniciar servidor de producción |
-| `npm run lint` | Ejecutar ESLint |
+| `npm run dev` | Start development server |
+| `npm run build` | Build for production |
+| `npm run start` | Start production server |
+| `npm run lint` | Run ESLint |
 
 ---
 
-## 🗄️ Modelo de Base de Datos
+## 🗄️ Database Schema
 
 ```
 ┌─────────────────┐       ┌─────────────────┐       ┌─────────────────┐
@@ -111,12 +111,12 @@ PRISMA_CLIENT_ENGINE_TYPE="library"
 ├─────────────────┤       ├─────────────────┤       ├─────────────────┤
 │ id: String      │──┐    │ id: Int         │──┐    │ id: Int         │
 │ email: String   │  │    │ shortUrl: String│  │    │ linkId: Int     │
-│ password: String│  └──► │ originalUrl    │  └──► │ ip: String      │
-│ createdAt       │       │ userId: String?│       │ userAgent       │
-│ updatedAt       │       │ createdAt      │       │ country         │
-└─────────────────┘       │ updatedAt      │       │ device          │
-                          └────────────────┘       │ createdAt       │
-                                                   └─────────────────┘
+│ password: String│  └──► │ originalUrl     │  └──► │ ip: String      │
+│ createdAt       │       │ userId: String? │       │ userAgent       │
+│ updatedAt       │       │ createdAt       │       │ country         │
+└─────────────────┘       │ updatedAt       │       │ device          │
+                          └─────────────────┘       │ createdAt       │
+                                                    └─────────────────┘
 ```
 
 ---
@@ -125,12 +125,12 @@ PRISMA_CLIENT_ENGINE_TYPE="library"
 
 ### `POST /api/shorten`
 
-Acorta una URL larga.
+Shortens a long URL.
 
 **Request:**
 ```json
 {
-  "url": "https://ejemplo.com/ruta/muy/larga"
+  "url": "https://example.com/some/very/long/path"
 }
 ```
 
@@ -138,101 +138,101 @@ Acorta una URL larga.
 ```json
 {
   "id": 1,
-  "shortUrl": "ejemplo-Aq",
-  "originalUrl": "https://ejemplo.com/ruta/muy/larga",
+  "shortUrl": "example-Aq",
+  "originalUrl": "https://example.com/some/very/long/path",
   "createdAt": "2024-01-01T00:00:00.000Z"
 }
 ```
 
-**Códigos de respuesta:**
-- `200` - URL acortada exitosamente
-- `400` - URL no proporcionada
-- `429` - Rate limit excedido (2 req/60s por IP)
-- `500` - Error del servidor
+**Response codes:**
+- `200` - URL shortened successfully
+- `400` - URL not provided
+- `429` - Rate limit exceeded (2 req/60s per IP)
+- `500` - Server error
 
 ---
 
 ### `GET /[shortUrl]`
 
-Redirige a la URL original y registra el clic.
+Redirects to the original URL and records the click.
 
 **Features:**
-- Captura IP, User-Agent, país, dispositivo
-- Geolocalización (ciudad, región, timezone, coordenadas)
-- Redirección 301/302
+- Captures IP, User-Agent, country, device
+- Geolocation (city, region, timezone, coordinates)
+- 301/302 redirect
 
 ---
 
-## 📁 Estructura del Proyecto
+## 📁 Project Structure
 
 ```
 acortador_link/
 ├── prisma/
-│   ├── migrations/          # Migraciones de base de datos
-│   └── schema.prisma       # Esquema de Prisma
+│   ├── migrations/          # Database migrations
+│   └── schema.prisma       # Prisma schema
 ├── src/
 │   ├── app/                 # Next.js App Router
-│   │   ├── [shortUrl]/     # Ruta dinámica de redirección
+│   │   ├── [shortUrl]/     # Dynamic redirect route
 │   │   ├── api/            # API routes
-│   │   ├── globals.css     # Estilos globales
-│   │   ├── layout.tsx      # Layout principal
-│   │   └── page.tsx        # Página de inicio
-│   ├── components/          # Componentes React
-│   │   └── ShortenForm.tsx # Formulario de acortamiento
-│   ├── lib/                 # Utilidades
-│   │   ├── base62.ts       # Algoritmo de codificación
-│   │   └── prisma.ts       # Cliente Prisma singleton
-│   └── generated/           # Archivos generados
-├── public/                  # Assets estáticos
-├── .env                     # Variables de entorno
-├── next.config.ts           # Configuración de Next.js
-├── package.json             # Dependencias
-├── prisma.config.ts         # Configuración de Prisma
-└── tsconfig.json            # Configuración de TypeScript
+│   │   ├── globals.css     # Global styles
+│   │   ├── layout.tsx      # Main layout
+│   │   └── page.tsx        # Home page
+│   ├── components/          # React components
+│   │   └── ShortenForm.tsx # Shortening form
+│   ├── lib/                 # Utilities
+│   │   ├── base62.ts       # Encoding algorithm
+│   │   └── prisma.ts       # Prisma singleton client
+│   └── generated/           # Generated files
+├── public/                  # Static assets
+├── .env                     # Environment variables
+├── next.config.ts           # Next.js configuration
+├── package.json             # Dependencies
+├── prisma.config.ts         # Prisma configuration
+└── tsconfig.json            # TypeScript configuration
 ```
 
 ---
 
 ## 🚧 Roadmap
 
-### ✅ Implementado
+### ✅ Implemented
 
-- [x] Configuración de base de datos (Prisma 7 + Neon)
-- [x] Algoritmo Base62 para codificación de URLs
-- [x] API de acortamiento de URLs
-- [x] Redirección inteligente con tracking
-- [x] Sistema de analíticas (IP, geolocalización, dispositivo)
-- [x] Rate limiting (2 req/60s por IP)
-- [x] Landing page con UI premium dark theme
+- [x] Database setup (Prisma 7 + Neon)
+- [x] Base62 URL encoding algorithm
+- [x] URL shortening API
+- [x] Smart redirect with tracking
+- [x] Analytics system (IP, geolocation, device)
+- [x] Rate limiting (2 req/60s per IP)
+- [x] Landing page with premium dark theme UI
 
-### ⏳ En Desarrollo
+### ⏳ In Development
 
-- [ ] Dashboard de analíticas con gráficos
-- [ ] Queries agrupadas por país y dispositivo
-- [ ] Autenticación de usuarios
-- [ ] Gestión de enlaces por usuario
-
----
-
-## 🎨 Diseño
-
-El proyecto cuenta con un diseño premium dark theme:
-
-- **Color primario:** `#22c55e` (verde)
-- **Background:** `#0a0a0a` (negro profundo)
-- **Efectos:** Glassmorphism con blur y transparencias
-- **Animaciones:** Transiciones suaves
+- [ ] Analytics dashboard with charts
+- [ ] Queries grouped by country and device
+- [ ] User authentication
+- [ ] Per-user link management
 
 ---
 
-## 📄 Licencia
+## 🎨 Design
 
-MIT License - ver archivo [LICENSE](LICENSE) para más detalles.
+The project features a premium dark theme design:
+
+- **Primary color:** `#22c55e` (green)
+- **Background:** `#0a0a0a` (deep black)
+- **Effects:** Glassmorphism with blur and transparencies
+- **Animations:** Smooth transitions
+
+---
+
+## 📄 License
+
+MIT License - see [LICENSE](LICENSE) file for details.
 
 ---
 
 <div align="center">
 
-Hecho con ❤️ usando Next.js, Prisma y PostgreSQL
+Made with ❤️ using Next.js, Prisma and PostgreSQL
 
 </div>
