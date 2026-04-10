@@ -29,8 +29,9 @@ export default function ShortenForm() {
         return;
       }
 
-      // Construir la URL completa (esto depende de tu dominio real)
-      const fullShortUrl = `${window.location.origin}/${data.shortUrl}`;
+      // Construir la URL completa
+      const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || window.location.origin;
+      const fullShortUrl = `${baseUrl}/${data.shortUrl}`;
       setShortened(fullShortUrl);
     } catch (error) {
       console.error("Error shortening URL:", error);
