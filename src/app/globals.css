@@ -1,26 +1,46 @@
 @import "tailwindcss";
 
+@theme {
+  --color-background: #000000;
+  --color-foreground: #ffffff;
+  --color-brand-green: #22c55e;
+  --color-dark-surface: #0a0a0a;
+  --color-border-gray: #262626;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #000000;
+  --foreground: #ffffff;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
 }
+
+/* Efecto de Brillo Central (Radial Gradient) */
+.bg-radial-gradient {
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(34, 197, 94, 0.08) 0%,
+    rgba(0, 0, 0, 0) 70%
+  );
+}
+
+/* Glassmorphism utilities */
+.glass-panel {
+  background: rgba(10, 10, 10, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--color-border-gray);
+}
+
+/* Micro-animations */
+.hover-scale {
+  transition: transform 0.2s ease-in-out;
+}
+.hover-scale:hover {
+  transform: scale(1.02);
+}
+
