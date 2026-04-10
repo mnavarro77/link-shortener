@@ -117,6 +117,9 @@ PRISMA_CLIENT_ENGINE_TYPE="library"
 └─────────────────┘       │ updatedAt      │       │ device          │
                           └────────────────┘       │ createdAt       │
                                                    └─────────────────┘
+
+gestion de usuarios y autenticación serán implementadas en la siguiente version
+
 ```
 
 ---
